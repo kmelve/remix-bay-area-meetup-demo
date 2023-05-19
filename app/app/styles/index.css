@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global */
 :root {
   --space-0: 0;
@@ -443,5 +447,60 @@ main {
     min-width: 366.5px;
     max-width: 366.5px;
     max-height: 231px;
+  }
+}
+.comments_link + .comments {
+  display: none;
+}
+
+
+
+.comment_form {
+  margin-top: var(--space-4);
+
+  & * {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  & label {
+    display: block;
+    margin-top: var(--space-2);
+  }
+  & input {
+    display: block;
+    width: 100%;
+    padding: var(--space-2);
+    border: 1px solid var(--gray-200);
+    border-radius: 3px;
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-2);
+    font-family: var(--font-family-sans);
+    margin-top: var(--space-1);
+  }
+  & textarea {
+    display: block;
+    width: 100%;
+    padding: var(--space-2);
+    border: 1px solid var(--gray-200);
+    border-radius: 3px;
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-2);
+    font-family: var(--font-family-sans);
+    margin-top: var(--space-1);
+  }
+  & button {
+    display: block;
+    width: 100%;
+    padding: var(--space-2);
+    border: 1px solid var(--gray-200);
+    border-radius: 3px;
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-2);
+    font-family: var(--font-family-sans);
+    margin-top: var(--space-1);
+    background: var(--blue-600);
+    color: var(--white);
+    cursor: pointer;
   }
 }

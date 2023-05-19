@@ -1,5 +1,5 @@
 import { type LinksFunction, json } from "@remix-run/node";
-import styles from "./styles/index.css";
+import mainStyles from './styles/index.css';
 import {
   Links,
   LiveReload,
@@ -21,7 +21,7 @@ export const loader = () => {
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: styles },
+    { rel: "stylesheet", href: mainStyles },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com" },
     {

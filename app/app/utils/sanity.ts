@@ -1,16 +1,7 @@
 import { createClient } from "@sanity/client";
-import type { PortableTextBlock } from "@portabletext/types";
-import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
+import type { Post, PostWithComments } from "./types";
 
-declare global {
-  interface Window {
-    ENV: {
-      SANITY_PROJECT_ID: string;
-      SANITY_DATASET: string;
-    };
-  }
-}
 
 const { SANITY_PROJECT_ID, SANITY_DATASET } =
   typeof document === "undefined" ? process.env : window.ENV;
@@ -30,23 +21,39 @@ export async function getPosts(): Promise<Post[]> {
   return await client.fetch(
     groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
   );
+
 }
 
 export async function getPost(slug: string): Promise<Post> {
   return await client.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]`,
+    groq`*[_type == "post" && slug.current == $slug][0]{
+      ...,
+      "comments": *[_type == "comment" && ^._id == post._ref && published]
+    }`,
     {
       slug,
     }
   );
 }
 
-export interface Post {
-  _type: "post";
-  _createdAt: string;
-  title?: string;
-  slug: Slug;
-  excerpt?: string;
-  mainImage?: ImageAsset;
-  body: PortableTextBlock[];
+export async function createComment(data: any) {
+  const token = process.env.SANITY_WRITE_TOKEN
+  if (!token) {
+    throw new Error("No token")
+  }
+  const clientWithToken = client.withConfig({token})
+
+  const { name, email, text } = data
+  const commentBody = {
+    _type: "comment",
+    published: false,
+    post: {
+      _type: "reference",
+      _ref: data.postId,
+    },
+    name,email,text,
+  }
+  return await clientWithToken.create(commentBody).catch((err) => { console.error(err) });
+
+
 }
