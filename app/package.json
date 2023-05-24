@@ -13,12 +13,14 @@
     "@remix-run/node": "^1.15.0",
     "@remix-run/react": "^1.15.0",
     "@remix-run/serve": "^1.15.0",
-    "@sanity/client": "^5.4.2",
+    "@sanity/client": "^6.1.2",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/preview-kit": "^1.5.3",
     "groq": "^3.8.3",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-gravatar": "^2.6.3",
     "remix-utils": "^6.3.0"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
+    "@types/react-gravatar": "^2.6.10",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.27.0",
     "postcss": "^8.4.21",

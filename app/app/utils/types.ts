@@ -29,4 +29,5 @@ export interface Comment {
   name: string;
   email: string;
   text: string;
+  published: boolean|string;
 }

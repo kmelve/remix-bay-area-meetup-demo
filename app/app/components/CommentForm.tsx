@@ -1,12 +1,15 @@
 import { Form } from "@remix-run/react"
+import type { CurrentSanityUser } from "@sanity/client"
 
-
-export function CommentForm(props: {postId: string}) {
+export function CommentForm(props: {postId: string, user: CurrentSanityUser|null}) {
   const {postId} = props
+  const {user} = props
+
   return (<section><h3>Add a comment</h3>
-    <p>Comments are moderated and may take up to 24 hours to appear.</p>
+    {user ? '' : <p>Comments are moderated and may take up to 24 hours to appear.</p>}
     <Form className="comment_form" method="POST">
-      {<input type="hidden" name="postId" value={postId} />}
+      <input type="hidden" name="postId" value={postId} />
+      <input type="hidden" name="published" value={user ? "true": "false" } />
         <div>
           <label htmlFor="name" className="sr-only">
             Name
@@ -18,6 +21,7 @@ export function CommentForm(props: {postId: string}) {
             autoComplete="name"
             required
             placeholder="Name"
+            defaultValue={user ? user.name : ''}
           />
         </div>
         <div>
@@ -31,6 +35,7 @@ export function CommentForm(props: {postId: string}) {
             autoComplete="email"
             required
             placeholder="Email"
+            defaultValue={user ? user.email : ''}
           />
         </div>
       <div>
@@ -49,7 +54,7 @@ export function CommentForm(props: {postId: string}) {
         <button
           type="submit"
         >
-          Post comment
+          {user ? 'Reply' : 'Post comment'}
         </button>
       </div>
     </Form></section>

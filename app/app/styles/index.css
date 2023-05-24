@@ -50,6 +50,7 @@
   --gray-200: #ced2d9;
   --gray-600: #6e7683;
   --blue-600: #1e61cd;
+  --blue-700: #1a4fa0;
   --magenta-100: #f9d7eb;
 
   --max-width-0: 320px;
@@ -453,6 +454,28 @@ main {
   display: none;
 }
 
+.comment {
+  margin-bottom: var(--space-4);
+  /* > * {
+    border: 1px solid black;
+  } */
+  .comment__byline {
+    display: flex;
+    align-items: top;
+    flex: auto 1 1;
+
+    > div:last-child {
+      margin-left: var(--space-2);
+    }
+    & h3 {
+      margin: 0;
+    }
+  }
+  .react-gravatar {
+    border-radius: 50%;
+  }
+
+}
 
 
 .comment_form {
@@ -502,5 +525,9 @@ main {
     background: var(--blue-600);
     color: var(--white);
     cursor: pointer;
+
+    &:hover {
+      background: var(--blue-700);
+    }
   }
 }

@@ -3,7 +3,7 @@
     "remix.env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/routes/.$slug.comments.tsx"  ],
   "compilerOptions": {
     "lib": [
       "DOM",

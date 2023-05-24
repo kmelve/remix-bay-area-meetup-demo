@@ -4,7 +4,7 @@ import Welcome from "~/components/Welcome";
 import { getPosts } from "~/utils/sanity";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "New Remix App" }];
+  return [{ title: "New Remix + Sanity App" }];
 };
 
 export const loader = async () => {
